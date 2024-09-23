@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /* import java.util.HashMap;
-TODO CheckStyle: Wrong lexicographical order for 'java.util.HashMap' import (remove this comment once resolved)
 import java.util.Map; */
 
 /**
