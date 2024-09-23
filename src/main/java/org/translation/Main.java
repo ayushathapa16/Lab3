@@ -1,5 +1,7 @@
 package org.translation;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,13 +21,10 @@ public class Main {
      * A class implementing the Translator interface is created and passed into a call to runProgram.
      * @param args not used by the program
      */
+    static String x = "quit";
     public static void main(String[] args) {
-
-        // TODO Task: once you finish the JSONTranslator,
-        //            you can use it here instead of the InLabByHandTranslator
-        //            to try out the whole program!
-        // Translator translator = new JSONTranslator(null);
-        Translator translator = new InLabByHandTranslator();
+        Translator translator = new JSONTranslator(null);
+        //Translator translator = new InLabByHandTranslator();
 
         runProgram(translator);
     }
@@ -39,16 +38,14 @@ public class Main {
     public static void runProgram(Translator translator) {
         while (true) {
             String country = promptForCountry(translator);
-            // TODO CheckStyle: The String "quit" appears 3 times in the file.
-            // TODO Checkstyle: String literal expressions should be on the left side of an equals comparison
-            if (country.equals("quit")) {
+            if (x.equals(country)) {
                 break;
             }
             // TODO Task: Once you switch promptForCountry so that it returns the country
             //            name rather than the 3-letter country code, you will need to
             //            convert it back to its 3-letter country code when calling promptForLanguage
             String language = promptForLanguage(translator, country);
-            if (language.equals("quit")) {
+            if (x.equals(language)) {
                 break;
             }
             // TODO Task: Once you switch promptForLanguage so that it returns the language
@@ -61,7 +58,7 @@ public class Main {
             Scanner s = new Scanner(System.in);
             String textTyped = s.nextLine();
 
-            if ("quit".equals(textTyped)) {
+            if (x.equals(textTyped)) {
                 break;
             }
         }
@@ -70,11 +67,17 @@ public class Main {
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
     private static String promptForCountry(Translator translator) {
         List<String> countries = translator.getCountries();
-        // TODO Task: replace the following println call, sort the countries alphabetically,
-        //            and print them out; one per line
-        //      hint: class Collections provides a static sort method
         // TODO Task: convert the country codes to the actual country names before sorting
-        System.out.println(countries);
+        List<String> codes = new ArrayList<>();
+        for (String country : countries) {
+            codes.add(new CountryCodeConverter(country));
+        }
+        Collections.sort(countries);
+        String[] codes = new String [countries.size()];
+        for (String country : countries)
+        for (String country : countries) {
+            System.out.println(country);
+        }
 
         System.out.println("select a country from above:");
 
