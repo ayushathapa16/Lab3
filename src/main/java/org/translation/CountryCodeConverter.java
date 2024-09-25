@@ -6,14 +6,17 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-/* import java.util.HashMap;
-TODO CheckStyle: Wrong lexicographical order for 'java.util.HashMap' import (remove this comment once resolved)
-import java.util.Map; */
+
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * This class provides the service of converting country codes to their names.
  */
 public class CountryCodeConverter {
+    String name = ;
+    String code = ;
+    <ArrayList> countries
 
     // TODO Task: pick appropriate instance variable(s) to store the data necessary for this class
 
