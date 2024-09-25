@@ -9,10 +9,11 @@ import java.util.List;
 /**
  * This class provides the service of converting language codes to their names.
  */
+// first four
 public class LanguageCodeConverter {
 
     // TODO Task: pick appropriate instance variables to store the data necessary for this class
-
+    private Map<String, String> codeToLangs;
     /**
      * Default constructor which will load the language codes from "language-codes.txt"
      * in the resources folder.
@@ -32,9 +33,25 @@ public class LanguageCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-            // TODO Task: use lines to populate the instance variable
+            // (DONE) TODO Task: use lines to populate the instance variable
             //           tip: you might find it convenient to create an iterator using lines.iterator()
+            codeToLangs = new HashMap<>();
+            Iterator<String> iterator = lines.iterator();
 
+            if (iterator.hasNext()) {
+                iterator.next();
+            }
+
+            while (iterator.hasNext()) {
+                String line = iterator.next();
+                String[] parts = line.split("\t");
+
+                if (parts.length == 2) {
+                    String name = parts[0].trim();
+                    String code = parts[1].trim();
+                    codeToLangs.put(code, name);
+                }
+            }
         }
 
         catch (IOException | URISyntaxException ex) {
@@ -49,8 +66,8 @@ public class LanguageCodeConverter {
      * @return the name of the language corresponding to the code
      */
     public String fromLanguageCode(String code) {
-        // TODO Task: update this code to use your instance variable to return the correct value
-        return code;
+        // (DONE) TODO Task: update this code to use your instance variable to return the correct value
+        return codeToLangs.get(code);
     }
 
     /**

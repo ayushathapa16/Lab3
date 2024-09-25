@@ -16,7 +16,6 @@ import org.json.JSONArray;
 public class JSONTranslator implements Translator {
 
     // TODO Task: pick appropriate instance variables for this class
-
     /**
      * Constructs a JSONTranslator using data from the sample.json resources file.
      */
@@ -46,6 +45,8 @@ public class JSONTranslator implements Translator {
         }
     }
 
+
+    // My Part
     @Override
     public List<String> getCountryLanguages(String country) {
         // TODO Task: return an appropriate list of language codes,
