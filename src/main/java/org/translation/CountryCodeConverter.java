@@ -70,6 +70,8 @@ public class CountryCodeConverter {
      * @return the 3-letter code of the country
      */
     public String fromCountry(String country) {
+        System.out.println(this.countries);
+        System.out.println(this.alpha3);
         int i = this.countries.indexOf(country);
         return this.alpha3.get(i);
     }
