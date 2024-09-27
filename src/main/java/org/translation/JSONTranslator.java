@@ -45,7 +45,7 @@ public class JSONTranslator implements Translator {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject countryObject = jsonArray.getJSONObject(i);
                 String country = countryObject.getString("alpha3");
-                countries.add(country);
+                this.countries.add(country);
 
                 Map<String, String> translations = new HashMap<>();
                 for (String key : countryObject.keySet()) {
@@ -53,7 +53,7 @@ public class JSONTranslator implements Translator {
                         translations.put(key, countryObject.getString(key));
                     }
                 }
-                countrylanguage.put(country, translations);
+                this.countrylanguage.put(country, translations);
             }
 
         }
@@ -65,16 +65,16 @@ public class JSONTranslator implements Translator {
     // My Part
     @Override
     public List<String> getCountryLanguages(String country) {
-        return new ArrayList<>(countrylanguage.get(country).keySet());
+        return new ArrayList<>(this.countrylanguage.get(country).keySet());
     }
 
     @Override
     public List<String> getCountries() {
-        return countries;
+        return this.countries;
     }
 
     @Override
     public String translate(String country, String language) {
-        return countrylanguage.get(country).get(language);
+        return this.countrylanguage.get(country).get(language);
     }
 }

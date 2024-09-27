@@ -46,8 +46,8 @@ public class LanguageCodeConverter {
                 if (row.length == 2) {
                     String code = row[0].trim();
                     String language = row[1].trim();
-                    codeToLang.put(code, language);
-                    langToCode.put(language, code);
+                    this.codeToLang.put(code, language);
+                    this.langToCode.put(language, code);
                 }
             }
         }
@@ -63,7 +63,7 @@ public class LanguageCodeConverter {
      * @return the name of the language corresponding to the code
      */
     public String fromLanguageCode(String code) {
-        return codeToLang.get(code);
+        return this.codeToLang.get(code);
     }
 
     /**
@@ -72,7 +72,7 @@ public class LanguageCodeConverter {
      * @return the 2-letter code of the language
      */
     public String fromLanguage(String language) {
-        return langToCode.get(language);
+        return this.langToCode.get(language);
     }
 
     /**
@@ -80,7 +80,7 @@ public class LanguageCodeConverter {
      * @return how many languages are included in this code converter.
      */
     public int getNumLanguages(){
-        return codeToLang.size();
+        return this.codeToLang.size();
     }
 }
 
