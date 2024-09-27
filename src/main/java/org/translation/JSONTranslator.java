@@ -38,7 +38,6 @@ public class JSONTranslator implements Translator {
     public JSONTranslator(String filename) {
         // read the file to get the data to populate things...
         try {
-
             String jsonString = Files.readString(Paths.get(getClass().getClassLoader().getResource(filename).toURI()));
 
             JSONArray jsonArray = new JSONArray(jsonString);
@@ -67,21 +66,16 @@ public class JSONTranslator implements Translator {
     // My Part
     @Override
     public List<String> getCountryLanguages(String country) {
-        // TODO Task: return an appropriate list of language codes,
-        //            but make sure there is no aliasing to a mutable object
-        return new ArrayList<>();
+        return new ArrayList<>(countrylanguage.get(country).keySet());
     }
 
     @Override
     public List<String> getCountries() {
-        // TODO Task: return an appropriate list of country codes,
-        //            but make sure there is no aliasing to a mutable object
-        return new ArrayList<>();
+        return countries;
     }
 
     @Override
     public String translate(String country, String language) {
-        // TODO Task: complete this method using your instance variables as needed
-        return null;
+        return countrylanguage.get(country).get(language);
     }
 }
