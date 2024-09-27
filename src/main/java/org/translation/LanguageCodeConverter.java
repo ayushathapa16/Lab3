@@ -67,8 +67,8 @@ public class LanguageCodeConverter {
      * Returns how many languages are included in this code converter.
      * @return how many languages are included in this code converter.
      */
-    public int getNumLanguages() {
-        // TODO Task: update this code to use your instance variable to return the correct value
-        return 0;
+    public int getNumLanguages(){
+        return codeToLangs.size();
     }
 }
+
