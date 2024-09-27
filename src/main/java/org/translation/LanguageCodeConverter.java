@@ -12,8 +12,14 @@ import java.util.List;
 // first four
 public class LanguageCodeConverter {
 
+<<<<<<< HEAD
     // TODO Task: pick appropriate instance variables to store the data necessary for this class
     private Map<String, String> codeToLangs;
+=======
+    private Map<String, String> codeToLang;
+    private Map<String, String> langToCode;
+
+>>>>>>> ayusha
     /**
      * Default constructor which will load the language codes from "language-codes.txt"
      * in the resources folder.
@@ -33,23 +39,21 @@ public class LanguageCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-            // (DONE) TODO Task: use lines to populate the instance variable
-            //           tip: you might find it convenient to create an iterator using lines.iterator()
-            codeToLangs = new HashMap<>();
-            Iterator<String> iterator = lines.iterator();
+            Map<String, String> codeToLang = new HashMap<>();
+            Map<String, String> langToCode = new HashMap<>();
 
-            if (iterator.hasNext()) {
-                iterator.next();
-            }
+            Iterator<String> iterator = lines.iterator();
 
             while (iterator.hasNext()) {
                 String line = iterator.next();
-                String[] parts = line.split("\t");
+                String[] row = line.split("\t");
 
-                if (parts.length == 2) {
-                    String name = parts[0].trim();
-                    String code = parts[1].trim();
-                    codeToLangs.put(code, name);
+                if (row.length == 2) {
+                    String code = row[0].trim();
+                    String language = row[1].trim();
+                    codeToLang.put(code, language);
+                    langToCode(language, code);
+
                 }
             }
         }
@@ -57,7 +61,6 @@ public class LanguageCodeConverter {
         catch (IOException | URISyntaxException ex) {
             throw new RuntimeException(ex);
         }
-
     }
 
     /**
@@ -66,7 +69,6 @@ public class LanguageCodeConverter {
      * @return the name of the language corresponding to the code
      */
     public String fromLanguageCode(String code) {
-        // (DONE) TODO Task: update this code to use your instance variable to return the correct value
         return codeToLangs.get(code);
     }
 
@@ -76,8 +78,7 @@ public class LanguageCodeConverter {
      * @return the 2-letter code of the language
      */
     public String fromLanguage(String language) {
-        // TODO Task: update this code to use your instance variable to return the correct value
-        return language;
+        return langToCode.get(language);
     }
 
     /**
