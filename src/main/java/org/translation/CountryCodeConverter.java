@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,8 +15,8 @@ import java.util.HashMap;
  * This class provides the service of converting country codes to their names.
  */
 public class CountryCodeConverter {
-    private List<String> countries;
-    private List<String> alpha3;
+    private List<String> countries = new ArrayList<>();
+    private List<String> alpha3 = new ArrayList<>();
 
 
 
