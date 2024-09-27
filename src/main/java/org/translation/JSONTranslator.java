@@ -62,7 +62,6 @@ public class JSONTranslator implements Translator {
         }
     }
 
-
     // My Part
     @Override
     public List<String> getCountryLanguages(String country) {
