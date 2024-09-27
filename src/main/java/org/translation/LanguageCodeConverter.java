@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class provides the service of converting language codes to their names.
@@ -45,7 +47,7 @@ public class LanguageCodeConverter {
                     String code = row[0].trim();
                     String language = row[1].trim();
                     codeToLang.put(code, language);
-                    langToCode(language, code);
+                    langToCode.put(language, code);
                 }
             }
         }
@@ -61,7 +63,7 @@ public class LanguageCodeConverter {
      * @return the name of the language corresponding to the code
      */
     public String fromLanguageCode(String code) {
-        return codeToLangs.get(code);
+        return codeToLang.get(code);
     }
 
     /**
@@ -78,7 +80,7 @@ public class LanguageCodeConverter {
      * @return how many languages are included in this code converter.
      */
     public int getNumLanguages(){
-        return codeToLangs.size();
+        return codeToLang.size();
     }
 }
 
