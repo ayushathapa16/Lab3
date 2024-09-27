@@ -42,7 +42,7 @@ public class CountryCodeConverter {
             for (int i = 1; i < lines.size(); i++) {
                 String[] sep = lines.get(i).split("\t");
                 this.countries.add(sep[0]);
-                this.alpha3.add(sep[3]);
+                this.alpha3.add(sep[2]);
 
             }
         }
