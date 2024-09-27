@@ -40,8 +40,8 @@ public class CountryCodeConverter {
                     .getClassLoader().getResource(filename).toURI()));
             for (int i = 1; i < lines.size(); i++) {
                 String[] sep = lines.get(i).split("\t");
-                countries.add(sep[0]);
-                alpha3.add(sep[3]);
+                this.countries.add(sep[0]);
+                this.alpha3.add(sep[3]);
 
             }
         }
@@ -59,8 +59,8 @@ public class CountryCodeConverter {
      * @return the name of the country corresponding to the code
      */
     public String fromCountryCode(String code) {
-        int i = alpha3.indexOf(code);
-        return countries.get(i);
+        int i = this.alpha3.indexOf(code);
+        return this.countries.get(i);
     }
 
     /**
@@ -69,8 +69,8 @@ public class CountryCodeConverter {
      * @return the 3-letter code of the country
      */
     public String fromCountry(String country) {
-        int i = countries.indexOf(country);
-        return alpha3.get(i);
+        int i = this.countries.indexOf(country);
+        return this.alpha3.get(i);
     }
 
     /**
@@ -78,6 +78,6 @@ public class CountryCodeConverter {
      * @return how many countries are included in this code converter.
      */
     public int getNumCountries() {
-        return countries.size();
+        return this.countries.size();
     }
 }
