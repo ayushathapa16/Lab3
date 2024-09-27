@@ -39,7 +39,7 @@ public class CountryCodeConverter {
         try {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
-            for (int i = 1; i < lines.size(); i++) {
+            for (int i = 0; i < lines.size(); i++) {
                 String[] sep = lines.get(i).split("\t");
                 this.countries.add(sep[0]);
                 this.alpha3.add(sep[2]);
