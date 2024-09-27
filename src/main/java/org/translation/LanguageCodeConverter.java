@@ -12,14 +12,10 @@ import java.util.List;
 // first four
 public class LanguageCodeConverter {
 
-<<<<<<< HEAD
-    // TODO Task: pick appropriate instance variables to store the data necessary for this class
-    private Map<String, String> codeToLangs;
-=======
+
     private Map<String, String> codeToLang;
     private Map<String, String> langToCode;
 
->>>>>>> ayusha
     /**
      * Default constructor which will load the language codes from "language-codes.txt"
      * in the resources folder.
@@ -39,9 +35,6 @@ public class LanguageCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-            Map<String, String> codeToLang = new HashMap<>();
-            Map<String, String> langToCode = new HashMap<>();
-
             Iterator<String> iterator = lines.iterator();
 
             while (iterator.hasNext()) {
@@ -53,7 +46,6 @@ public class LanguageCodeConverter {
                     String language = row[1].trim();
                     codeToLang.put(code, language);
                     langToCode(language, code);
-
                 }
             }
         }
