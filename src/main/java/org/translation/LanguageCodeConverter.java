@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +16,8 @@ import java.util.Map;
 public class LanguageCodeConverter {
 
 
-    private Map<String, String> codeToLang;
-    private Map<String, String> langToCode;
+    private Map<String, String> codeToLang = new HashMap<>();
+    private Map<String, String> langToCode = new HashMap<>();
 
     /**
      * Default constructor which will load the language codes from "language-codes.txt"
