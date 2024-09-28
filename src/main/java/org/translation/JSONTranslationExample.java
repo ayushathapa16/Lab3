@@ -77,4 +77,3 @@ public class JSONTranslationExample {
         System.out.println(translation);
     }
 }
-//
