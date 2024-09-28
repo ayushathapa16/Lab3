@@ -38,15 +38,12 @@ public class LanguageCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-            Iterator<String> iterator = lines.iterator();
-
-            while (iterator.hasNext()) {
-                String line = iterator.next();
+            for (String line : lines) {
                 String[] row = line.split("\t");
 
                 if (row.length == 2) {
-                    String code = row[0].trim();
-                    String language = row[1].trim();
+                    String code = row[1].trim();
+                    String language = row[0].trim();
                     this.codeToLang.put(code, language);
                     this.langToCode.put(language, code);
                 }

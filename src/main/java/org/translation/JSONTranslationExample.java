@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -47,18 +51,19 @@ public class JSONTranslationExample {
      * @param languageCode the language to translate to, as its two-letter code.
      * @return the translation of country to the given language or "Country not found" if there is no translation.
      */
-    public String getCountryNameTranslation(String countryCode, String languageCode)  {
+    public String getCountryNameTranslation(String countryCode, String languageCode) {
+        countryCode = countryCode.toLowerCase();
+
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject country = jsonArray.getJSONObject(i);
-            if (country.getString("alpha3").equals((countryCode))) {
+
+            if (country.getString("alpha3").equals(countryCode)) {
                 return country.getString(languageCode);
             }
-            {
-                return "Country not found";
-            }
         }
-        return countryCode;
+        return "Country not found";
     }
+
 
     /**
      * Prints the Spanish translation of Canada.
