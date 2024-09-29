@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +13,6 @@ import java.util.Map;
  */
 // first four
 public class LanguageCodeConverter {
-
-
     private Map<String, String> codeToLang = new HashMap<>();
     private Map<String, String> langToCode = new HashMap<>();
 
@@ -38,8 +35,8 @@ public class LanguageCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-            for (String line : lines) {
-                String[] row = line.split("\t");
+            for (int i = 1; i < lines.size(); i++) {
+                String[] row = lines.get(i).split("\t");
 
                 if (row.length == 2) {
                     String code = row[1].trim();
@@ -77,7 +74,7 @@ public class LanguageCodeConverter {
      * Returns how many languages are included in this code converter.
      * @return how many languages are included in this code converter.
      */
-    public int getNumLanguages(){
+    public int getNumLanguages() {
         return this.codeToLang.size();
     }
 }

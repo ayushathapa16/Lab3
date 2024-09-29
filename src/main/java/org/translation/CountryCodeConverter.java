@@ -7,18 +7,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import java.util.Map;
-import java.util.HashMap;
-
 /**
  * This class provides the service of converting country codes to their names.
  */
 public class CountryCodeConverter {
     private List<String> countries = new ArrayList<>();
     private List<String> alpha3 = new ArrayList<>();
-
-
 
     /**
      * Default constructor which will load the country codes from "country-codes.txt"
@@ -39,18 +33,16 @@ public class CountryCodeConverter {
         try {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
+
             for (int i = 1; i < lines.size(); i++) {
                 String[] sep = lines.get(i).split("\t");
+
                 this.countries.add(sep[0]);
                 this.alpha3.add(sep[2]);
-
             }
         }
-        catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+        catch (IOException | URISyntaxException exception) {
+            throw new RuntimeException(exception);
         }
     }
 
@@ -60,9 +52,9 @@ public class CountryCodeConverter {
      * @return the name of the country corresponding to the code
      */
     public String fromCountryCode(String code) {
-        code = code.toUpperCase();
+        String formattedCode = code.toUpperCase();
 
-        int i = this.alpha3.indexOf(code);
+        int i = this.alpha3.indexOf(formattedCode);
         return this.countries.get(i);
     }
 

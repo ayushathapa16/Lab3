@@ -12,7 +12,6 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 /**
  * An implementation of the Translator interface which reads in the translation
  * data from a JSON file. The data is read in once each time an instance of this class is constructed.
@@ -34,7 +33,6 @@ public class JSONTranslator implements Translator {
      * @param filename the name of the file in resources to load the data from
      * @throws RuntimeException if the resource file can't be loaded properly
      */
-    @SuppressWarnings("checkstyle:RegexpMultiline")
     public JSONTranslator(String filename) {
         // read the file to get the data to populate things...
         try {
@@ -45,6 +43,7 @@ public class JSONTranslator implements Translator {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject countryObject = jsonArray.getJSONObject(i);
                 String country = countryObject.getString("alpha3");
+                country = country.toUpperCase();
                 this.countries.add(country);
 
                 Map<String, String> translations = new HashMap<>();
@@ -65,7 +64,8 @@ public class JSONTranslator implements Translator {
     // My Part
     @Override
     public List<String> getCountryLanguages(String country) {
-        return new ArrayList<>(this.countrylanguage.get(country).keySet());
+        String formattedCountry = country.toUpperCase();
+        return new ArrayList<>(this.countrylanguage.get(formattedCountry).keySet());
     }
 
     @Override
@@ -75,6 +75,7 @@ public class JSONTranslator implements Translator {
 
     @Override
     public String translate(String country, String language) {
-        return this.countrylanguage.get(country).get(language);
+        String formattedCountry = country.toUpperCase();
+        return this.countrylanguage.get(formattedCountry).get(language);
     }
 }

@@ -1,6 +1,9 @@
 package org.translation;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Main class for this program.
@@ -18,9 +21,8 @@ public class Main {
      * A class implementing the Translator interface is created and passed into a call to runProgram.
      * @param args not used by the program
      */
-    static String x = "quit";
     public static void main(String[] args) {
-        Translator translator = new JSONTranslator(null);
+        Translator translator = new JSONTranslator("sample.json");
         // Translator translator = new InLabByHandTranslator();
 
         runProgram(translator);
@@ -33,31 +35,34 @@ public class Main {
      * @param translator the Translator implementation to use in the program
      */
     public static void runProgram(Translator translator) {
+        String quit = "quit";
+
+        // if you choose to continue, it uses the same translator every time
         while (true) {
             String country = promptForCountry(translator);
-            if (x.equals(country)) {
+            if (country.equals(quit)) {
                 break;
             }
 
             // convert the country name back into its associated code
-            CountryCodeConverter countryConverter = new CountryCodeConverter(country);
-            country = countryConverter.fromCountry(country);
+            CountryCodeConverter countryConverter = new CountryCodeConverter("country-codes.txt");
+            String countryCode = countryConverter.fromCountry(country);
 
-            String language = promptForLanguage(translator, country);
-            if (x.equals(language)) {
+            String language = promptForLanguage(translator, countryCode);
+            if (language.equals(quit)) {
                 break;
             }
 
             // convert language back into its associated code
-            LanguageCodeConverter languageConverter = new LanguageCodeConverter(language);
-            language = languageConverter.fromLanguage(language);
+            LanguageCodeConverter languageConverter = new LanguageCodeConverter("language-codes.txt");
+            String languageCode = languageConverter.fromLanguage(language);
 
-            System.out.println(country + " in " + language + " is " + translator.translate(country, language));
+            System.out.println(country + " in " + language + " is " + translator.translate(countryCode, languageCode));
             System.out.println("Press enter to continue or quit to exit.");
             Scanner s = new Scanner(System.in);
             String textTyped = s.nextLine();
 
-            if (x.equals(textTyped)) {
+            if (textTyped.equals(quit)) {
                 break;
             }
         }
@@ -65,12 +70,13 @@ public class Main {
 
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
     private static String promptForCountry(Translator translator) {
-        List<String> countries = translator.getCountries();
+        List<String> countryCodes = translator.getCountries();
+        List<String> countries = new ArrayList<>();
         CountryCodeConverter converter = new CountryCodeConverter();
 
         // convert country codes to actual country names
-        for (int i = 0; i < countries.size(); i++) {
-            countries.set(i, converter.fromCountryCode(countries.get(i)));
+        for (int i = 0; i < countryCodes.size(); i++) {
+            countries.add(converter.fromCountryCode(countryCodes.get(i)));
         }
 
         // sort countries alphabetically
